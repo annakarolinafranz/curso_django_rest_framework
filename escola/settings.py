@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
+
+Token Geek: 68bb45e0dcd5eca6f195ca8c595b8a2a31e9a42e
+
+Token Felicity: 099cd66b13f62cb698873b7c7442c4ab821a2823
+
 """
 
 import os
@@ -131,12 +136,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.SessionAuthentication',  # classes vc pode ter varias formas
+        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # paginacao somente uma forma
-    'PAGE_SIZE': 2
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/minute',  # second, day, month, year
+        'user': '10/minute'
+    }
 }

@@ -1,4 +1,4 @@
-#!/home/karolsdev/PycharmProjects/CursoDjangoFramework/venv/bin/python
+#!/home/franzkarols/Documentos/curso_django_rest_framework/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
